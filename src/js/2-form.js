@@ -43,10 +43,10 @@ if (localStorage.getItem("feedback-form-state")) {
 
 document.querySelector('.feedback-form').addEventListener('input', function(event) {
     if (event.target.matches('input[name="email"]')) {
-        formData.email = event.target.value;
+        formData.email = event.target.value.trim();
     }
     if (event.target.matches('textarea[name="message"]')) {
-        formData.message = event.target.value;
+        formData.message = event.target.value.trim();
     }
     localStorage.setItem("feedback-form-state", JSON.stringify(formData));
 });
@@ -58,7 +58,7 @@ document.querySelector('.feedback-form').addEventListener('submit', function(eve
     } else {
         console.log(formData);
         localStorage.removeItem("feedback-form-state");
-        formData = { email: "", message: "" };
+        formData = {email: "", message: ""};
         document.querySelector('input[name="email"]').value = "";
         document.querySelector('textarea[name="message"]').value = "";
     }
